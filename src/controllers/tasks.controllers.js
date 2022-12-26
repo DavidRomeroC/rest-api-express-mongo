@@ -12,7 +12,21 @@ const createTask = async (req, res) => {
     res.status(200).send('Guardado con exito')
 }
 
+const updateTask = async (req, res) => {
+    const {id} = req.params
+    await Tasks.findByIdAndUpdate(id, req.body)
+    res.redirect('/tasks')
+}
+
+const deleteTask = async (req, res) => {
+    const { id } = req.params
+    await Tasks.findByIdAndDelete(id)
+    res.redirect('/tasks')
+}
+
 module.exports = {
     listTasks,
-    createTask
+    createTask,
+    deleteTask,
+    updateTask,
 };
