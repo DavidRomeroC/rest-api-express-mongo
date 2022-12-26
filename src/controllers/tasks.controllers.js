@@ -9,7 +9,7 @@ const createTask = async (req, res) => {
     const task = Tasks(req.body)
     console.log(task)
     await task.save()
-    res.status(200).send('Guardado con exito')
+    res.send('Guardado con exito')
 }
 
 const updateTask = async (req, res) => {
