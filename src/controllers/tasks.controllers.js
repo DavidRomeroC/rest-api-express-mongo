@@ -7,9 +7,12 @@ const listTasks = async (req, res) => {
 
 const createTask = async (req, res) => {
     const task = Tasks(req.body)
-    console.log(task)
-    await task.save()
-    res.send('Guardado con exito')
+    if (task.title && task.description) {
+        await task.save()
+        res.send('Guardado con exito')
+    } else {
+        res.send('No hay nada que guardar')
+    }
 }
 
 const updateTask = async (req, res) => {
@@ -21,7 +24,7 @@ const updateTask = async (req, res) => {
 const deleteTask = async (req, res) => {
     const { id } = req.params
     await Tasks.findByIdAndDelete(id)
-    res.redirect('/tasks')
+    res.send('Tarea borrada con exito')
 }
 
 module.exports = {
